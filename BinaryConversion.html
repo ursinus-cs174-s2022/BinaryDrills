@@ -1,6 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script src="BinaryUtils.js"></script>
 </head>
 <body>
 
@@ -62,40 +63,12 @@
     let check_binaryBase10 = document.getElementById("check_binaryBase10");
     let answer_binaryBase10 = document.getElementById("answer_binaryBase10");
 
-    function base10ToBinary(x) {
-        let rem = x;
-        let b = "";
-        let place = 2;
-        do {
-            if (rem%place == 0) {
-                b = "0" + b;
-            }
-            else {
-                b = "1" + b;
-            }
-            rem -= rem%place;
-            place *= 2;
-        }
-        while (rem > 0);
-        return b;
-    }
-
-    function binaryToBase10(b) {
-        let s = b.split("").reverse().join("");
-        let place = 1;
-        let x = 0;
-        for (let i = 0; i < s.length; i++) {
-            if (s[i] == "1") {
-                x += place;
-            }
-            place *= 2;
-        }
-        return x;
-    }
 
     function new_base10Binary() {
         base10 = Math.round(Math.random()*64);
         query_base10Binary.innerHTML = "<h2>" + base10 + "</h2>";
+        answer_base10Binary.innerHTML = "";
+        check_base10Binary.value = "";
     }
 
     function new_binaryBase10() {
@@ -103,40 +76,6 @@
         query_binaryBase10.innerHTML = "<h2>" + binary + "</h2>";
         answer_binaryBase10.innerHTML = "";
         check_binaryBase10.value = "";
-    }
-
-    function makeBinaryTableStr(b) {
-        let s = "";
-        s += "<table border = 1 cellpadding=10><tr>";
-        let place = Math.pow(2, b.length-1);
-        for (let i = 0; i < b.length; i++) {
-            s += "<td><h3>" + place + "</h3></td>";
-            place /= 2;
-        }
-        s += "</tr><tr>";
-        for (let i = 0; i < b.length; i++) {
-            s += "<td><h3>" + b[i] + "</h3></td>";
-        }
-        s += "</tr></table>";
-        return s;
-    }
-
-    function makeShowBinarySumStr(b, x) {
-        let s = "<h2>";
-        place = Math.pow(2, b.length-1);
-        for (let i = 0; i < b.length; i++) {
-            s += "<font color=red>" + b[i] + "</font>*<font color=green>" + place+"</font>";
-            if (i < b.length - 1) {
-                s += "+ ";
-            }
-            else {
-                s += " = ";
-            }
-            place /= 2;
-        }
-        s + "</code><BR>"
-        s += "<b>" + x + "</b></h2>";
-        return s;
     }
 
     function checkBase10Binary() {
@@ -151,8 +90,12 @@
                 let s = "<h2><font color=red>Whoops!</font></h2>";
                 s += base10 + " in binary is <BR><code><h3>";
                 s += makeBinaryTableStr(b) + makeShowBinarySumStr(b, base10);
+                s += "<button type = \"button\" onclick = \"new_base10Binary()\">Try another example</button>";
                 answer_base10Binary.innerHTML = s;
             }
+        }
+        else {
+            alert("Generate an example first!");
         }
     }
 
@@ -170,6 +113,9 @@
                 s += "<button type = \"button\" onclick = \"new_binaryBase10()\">Try another example</button>";
                 answer_binaryBase10.innerHTML = s;
             }
+        }
+        else {
+            alert("Generate an example first!");
         }
     }
 
