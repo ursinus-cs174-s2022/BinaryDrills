@@ -72,7 +72,7 @@
     }
 
     function new_hexBase10() {
-        hex = base10ToHex(Math.round(Math.random()*64));
+        hex = base10ToHex(Math.round(Math.random()*256));
         query_hexBase10.innerHTML = "<h2>" + hex + "</h2>";
         answer_hexBase10.innerHTML = "";
         check_hexBase10.value = "";
@@ -89,7 +89,7 @@
                 b = base10ToHex(base10);
                 let s = "<h2><font color=red>Whoops!</font></h2>";
                 s += base10 + " in hex is <BR><code><h3>";
-                s += makeHexTableStr(b) + makeShowHexSumStr(b, base10);
+                s += makeHexTableStr(b) + makeShowHexSumStr(b);
                 s += "<button type = \"button\" onclick = \"new_base10hex()\">Try another example</button>";
                 answer_base10hex.innerHTML = s;
             }
@@ -109,7 +109,7 @@
             else {
                 x = hexToBase10(hex);
                 let s = "<h2><font color=red>Whoops!</font></h2>";
-                s += makeHexTableStr(hex) + makeShowHexSumStr(hex, x);
+                s += makeHexTableStr(hex) + makeShowHexSumStr(hex);
                 s += "<button type = \"button\" onclick = \"new_hexBase10()\">Try another example</button>";
                 answer_hexBase10.innerHTML = s;
             }
