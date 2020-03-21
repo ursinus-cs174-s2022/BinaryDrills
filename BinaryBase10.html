@@ -89,7 +89,7 @@
                 b = base10ToBinary(base10);
                 let s = "<h2><font color=red>Whoops!</font></h2>";
                 s += base10 + " in binary is <BR><code><h3>";
-                s += makeBinaryTableStr(b) + makeShowBinarySumStr(b, base10);
+                s += makeBinaryTableStr(b) + makeShowBinarySumStr(b);
                 s += "<button type = \"button\" onclick = \"new_base10Binary()\">Try another example</button>";
                 answer_base10Binary.innerHTML = s;
             }
@@ -109,7 +109,7 @@
             else {
                 x = binaryToBase10(binary);
                 let s = "<h2><font color=red>Whoops!</font></h2>";
-                s += makeBinaryTableStr(binary) + makeShowBinarySumStr(binary, x);
+                s += makeBinaryTableStr(binary) + makeShowBinarySumStr(binary);
                 s += "<button type = \"button\" onclick = \"new_binaryBase10()\">Try another example</button>";
                 answer_binaryBase10.innerHTML = s;
             }
