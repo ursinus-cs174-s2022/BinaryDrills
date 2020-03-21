@@ -84,7 +84,9 @@
             let b = check_binaryHex.value;
             let myans = hexToBinary(b);
             if (myans == binary) {
-                answer_binaryHex.innerHTML = "<h2><font color=green>Correct!</font></h2>";
+                let s = "<h2><font color=green>Correct!</font></h2>";
+                s += "<button type = \"button\" onclick = \"new_binaryHex()\">Try another example</button>";
+                answer_binaryHex.innerHTML = s;
             }
             else {
                 b = binaryToHex(binary);
@@ -105,7 +107,9 @@
             let x = check_hexBinary.value;
             let myans = binaryToHex(x);
             if (myans == hex) {
-                answer_hexBinary.innerHTML = "<h2><font color=green>Correct!</font></h2>";
+                let s = "<h2><font color=green>Correct!</font></h2>";
+                s += "<button type = \"button\" onclick = \"new_hexBinary()\">Try another example</button>";
+                answer_hexBinary.innerHTML = s;
             }
             else {
                 x = hexToBinary(hex);
