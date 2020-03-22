@@ -107,6 +107,12 @@ HEX_VAL_TO_NUM["C"] = 12;
 HEX_VAL_TO_NUM["D"] = 13;
 HEX_VAL_TO_NUM["E"] = 14;
 HEX_VAL_TO_NUM["F"] = 15;
+HEX_VAL_TO_NUM["a"] = 10;
+HEX_VAL_TO_NUM["b"] = 11;
+HEX_VAL_TO_NUM["c"] = 12;
+HEX_VAL_TO_NUM["d"] = 13;
+HEX_VAL_TO_NUM["e"] = 14;
+HEX_VAL_TO_NUM["f"] = 15;
 
 /**
  * 
