@@ -48,75 +48,33 @@
         return s;
     }
 
-    function makeTableRow(num, startCell) {
-        if (startCell === undefined) {
-            startCell = "";
-        }
-        let s = "<tr><td>" + startCell + "</td>";
-        for (let i = 0; i < num.length; i++) {
-            s += "<td><h2>&nbsp&nbsp"+num[i]+"&nbsp&nbsp</h2></td>";
-        }
-        s += "</tr>";
-        return s;
-    }
-
     function makeBinaryStringTable() {
         let s = "<table>";
-        s += makeTableRow(x);
-        s += makeTableRow(y, getButtonsOpStr());
+        s += makeBinaryTableRowStr(x);
+        s += makeBinaryTableRowStr(y, getButtonsOpStr());
         s += "<tr><td colspan="+(x.length+1)+"><hr></td></tr>";
         tableStr = s;
         bitsTable.innerHTML = tableStr + "</table>";
     }
 
     function doAND() {
-        let result = "";
-        for (let i = 0; i < x.length; i++) {
-            let xi = parseInt(x[i]);
-            let yi = parseInt(y[i]);
-            if (xi*yi == 1) {
-                result += "1";
-            }
-            else {
-                result += "0";
-            }
-        }
+        let result = doBinaryAND(x, y);
         let s = tableStr;
-        s += makeTableRow(result, "<h2>0x"+binaryToHex(result)+"</h2>");
+        s += makeBinaryTableRowStr(result, "<h2>0x"+binaryToHex(result)+"</h2>");
         bitsTable.innerHTML = s + "</table>";
     }
 
     function doOR() {
-        let result = "";
-        for (let i = 0; i < x.length; i++) {
-            let xi = parseInt(x[i]);
-            let yi = parseInt(y[i]);
-            if (xi == 1 || yi == 1) {
-                result += "1";
-            }
-            else {
-                result += "0";
-            }
-        }
+        let result = doBinaryOR(x, y);
         let s = tableStr;
-        s += makeTableRow(result, "<h2>0x"+binaryToHex(result)+"</h2>");
+        s += makeBinaryTableRowStr(result, "<h2>0x"+binaryToHex(result)+"</h2>");
         bitsTable.innerHTML = s + "</table>";
     }
 
     function doXOR() {
-        let result = "";
-        for (let i = 0; i < x.length; i++) {
-            let xi = parseInt(x[i]);
-            let yi = parseInt(y[i]);
-            if ((xi+yi)%2 == 1) {
-                result += "1";
-            }
-            else {
-                result += "0";
-            }
-        }
+        let result = doBinaryXOR(x, y);
         let s = tableStr;
-        s += makeTableRow(result, "<h2>0x"+binaryToHex(result)+"</h2>");
+        s += makeBinaryTableRowStr(result, "<h2>0x"+binaryToHex(result)+"</h2>");
         bitsTable.innerHTML = s + "</table>";
     }
     

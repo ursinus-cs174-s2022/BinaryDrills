@@ -271,3 +271,133 @@ function makeHexBinaryTableStr(h) {
     s += "</tr></table>";
     return s;
 }
+
+
+/**
+ * Make a table row string for a particular binary number
+ * @param {string} The binary string to output
+ * @param {string} startCell What to put in the first cell, if anything
+ */
+function makeBinaryTableRowStr(num, startCell) {
+    if (startCell === undefined) {
+        startCell = "";
+    }
+    let s = "<tr><td>" + startCell + "</td>";
+    for (let i = 0; i < num.length; i++) {
+        s += "<td><h2>&nbsp&nbsp"+num[i]+"&nbsp&nbsp</h2></td>";
+    }
+    s += "</tr>";
+    return s;
+}
+
+
+/**
+ * Do the OR of two bits
+ * @param {int} xi First bit
+ * @param {int} yi Second bit
+ * @returns string of "0" or "1"
+ */
+function getORResult(xi, yi) {
+    let result = "";
+    if (xi == 1 || yi == 1) {
+        result = "1";
+    }
+    else {
+        result = "0";
+    }
+    return result;
+}
+
+/**
+ * Do the AND of two bits
+ * @param {int} xi First bit
+ * @param {int} yi Second bit
+ * @returns string of "0" or "1"
+ */
+function getANDResult(xi, yi) {
+    let result = "";
+    if (xi*yi == 1) {
+        result = "1";
+    }
+    else {
+        result = "0";
+    }
+    return result;
+}
+
+/**
+ * Do the OR of two bits
+ * @param {int} xi First bit
+ * @param {int} yi Second bit
+ * @returns string of "0" or "1"
+ */
+function getXORResult(xi, yi) {
+    let result = "";
+    if ((xi+yi)%2 == 1) {
+        result = "1";
+    }
+    else {
+        result = "0";
+    }
+    return result;
+}
+
+
+/**
+ * Do a bitwise operation on x and y
+ * @param {string} x First bit string
+ * @param {string} y Second bit string
+ * @param {function} fn Handle to a function which
+ *                      operates on each pair of bits
+ * @returns Resulting bit string
+ */
+function doBitwiseOP(x, y, fn) {
+    // First, make sure the strings are the same length
+    // Zeropad if not
+    let N = Math.max(x.length, y.length);
+    while(x.length < N) {
+        x = "0" + x;
+    }
+    while (y.length < N) {
+        y = "0" + y;
+    }
+    // Now go bit by bit and do the operation
+    let result = "";
+    for (let i = 0; i < x.length; i++) {
+        let xi = parseInt(x[i]);
+        let yi = parseInt(y[i]);
+        result += fn(xi, yi);
+    }
+    return result;
+}
+
+/**
+ * Do the binary AND of x and y
+ * @param {string} x First bit string
+ * @param {string} y Second bit string
+ * @returns Resulting bit string
+ */
+function doBinaryAND(x, y) {
+    return doBitwiseOP(x, y, getANDResult);
+}
+
+
+/**
+ * Do the binary OR of x and y
+ * @param {string} x First bit string
+ * @param {string} y Second bit string
+ * @returns Resulting bit string
+ */
+function doBinaryOR(x, y) {
+    return doBitwiseOP(x, y, getORResult);
+}
+
+/**
+ * Do the binary XOR of x and y
+ * @param {string} x First bit string
+ * @param {string} y Second bit string
+ * @returns Resulting bit string
+ */
+function doBinaryXOR() {
+    return doBitwiseOP(x, y, getXORResult);
+}
